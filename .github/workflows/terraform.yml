@@ -27,11 +27,13 @@ jobs:
 
     # Create default credentials for Terraform from the GitHub secrets variable
     - name: Setup Google Cloud Credentials
-    - uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+      uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
       with:
         version: '290.0.1'
         service_account_key: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
         export_default_credentials: true
+
+    - name: Reviewing gcloud setup
       run: gcloud info
 
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
