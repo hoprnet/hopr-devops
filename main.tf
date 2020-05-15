@@ -1,3 +1,10 @@
+terraform {
+  backend "gcs" {
+    bucket  = "hopr-terraform-state"
+    prefix  = "terraform/state"
+  }
+}
+
 provider "google" {
   project = "hoprassociation"
   region  = "europe-west6"
