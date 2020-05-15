@@ -1,5 +1,4 @@
 provider "google" {
- credentials = file("credentials.json")
  project     = "hoprassociation"
  region      = "europe-west6"
 }
