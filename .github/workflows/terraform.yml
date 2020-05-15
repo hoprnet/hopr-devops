@@ -33,6 +33,10 @@ jobs:
         service_account_key: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
         export_default_credentials: true
 
+    # Ensure we have Daneel's key in our filesystem before we add it to our servers as part of our setup
+    - name: Setup Daneel's key
+      run: echo ${{ secrets.SSH_PUB_KEY }} > key.pub
+
     - name: Reviewing gcloud setup
       run: gcloud info
 

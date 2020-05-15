@@ -27,4 +27,7 @@ resource "google_compute_instance" "default" {
       // Include this section to give the VM an external ip address
     }
   }
+  metadata = {
+    ssh-keys = "daneel:${file("key.pub")}"
+  }
 }
