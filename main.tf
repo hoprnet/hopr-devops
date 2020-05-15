@@ -1,7 +1,7 @@
 terraform {
   backend "gcs" {
-    bucket  = "hopr-terraform-state"
-    prefix  = "terraform/state"
+    bucket = "hopr-terraform-state"
+    prefix = "terraform/state"
   }
 }
 
