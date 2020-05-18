@@ -10,6 +10,15 @@ provider "google" {
   region  = "europe-west6"
 }
 
+resource "google_compute_address" "static" {
+  name = "ipv4-address"
+}
+
+data "google_compute_image" "debian_image" {
+  family  = "debian-9"
+  project = "debian-cloud"
+}
+
 // A single Google Cloud Engine instance
 resource "google_compute_instance" "default" {
   name         = "hopr-develop-eu-core-001-west6-a"
@@ -18,13 +27,13 @@ resource "google_compute_instance" "default" {
 
   boot_disk {
     initialize_params {
-      image = "debian-cloud/debian-9"
+      image = data.google_compute_image.debian_image.self_link
     }
   }
   network_interface {
     network = "default"
     access_config {
-      // Include this section to give the VM an external ip address
+      nat_ip = google_compute_address.static.address
     }
   }
   metadata = {
