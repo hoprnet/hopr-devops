@@ -72,7 +72,7 @@ resource "google_compute_instance" "default" {
     }
   }
   metadata = {
-    ssh-keys = "daneel:${file("key.pub")}"
+    ssh-keys                  = "daneel:${file("key.pub")}"
     gce-container-declaration = module.gce-container.metadata_value
     google-logging-enabled    = "true"
     google-monitoring-enabled = "true"
