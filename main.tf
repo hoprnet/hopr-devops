@@ -19,6 +19,41 @@ data "google_compute_image" "debian_image" {
   project = "debian-cloud"
 }
 
+module "gce-container" {
+  source = "github.com/terraform-google-modules/terraform-google-container-vm.git"
+
+  container = {
+    image = "gcr.io/google-samples/hello-app:1.0"
+
+    env = [
+      {
+        name  = "TEST_VAR"
+        value = "Hello World!"
+      },
+    ]
+
+    volumeMounts = [
+      {
+        mountPath = "/cache"
+        name      = "tempfs-0"
+        readOnly  = false
+      },
+    ]
+  }
+
+  volumes = [
+    {
+      name = "tempfs-0"
+
+      emptyDir = {
+        medium = "Memory"
+      }
+    },
+  ]
+
+  restart_policy = "Always"
+}
+
 // A single Google Cloud Engine instance
 resource "google_compute_instance" "default" {
   name         = "hopr-develop-eu-core-001-west6-a"
@@ -38,6 +73,9 @@ resource "google_compute_instance" "default" {
   }
   metadata = {
     ssh-keys = "daneel:${file("key.pub")}"
+    gce-container-declaration = module.gce-container.metadata_value
+    google-logging-enabled    = "true"
+    google-monitoring-enabled = "true"
   }
 
 }
