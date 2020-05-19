@@ -33,16 +33,19 @@ jobs:
         service_account_key: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
         export_default_credentials: true
 
+    # Ensuring the stored credentials have the proper information
+    - name: Reviewing gcloud setup
+      run: gcloud info
+
     # Ensure we have Daneel's key in our filesystem before we add it to our servers as part of our setup
     - name: Setup Daneel's key
+      working-directory: hopr
       run: echo ${{ secrets.SSH_PUB_KEY }} > key.pub
 
     # Ensure we have the credentials for our datacenter inside the folder for Terraform to use
     - name: Setup Terraform Keys
+      working-directory: hopr
       run: echo ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }} > hopr-ch-develop.json
-
-    - name: Reviewing gcloud setup
-      run: gcloud info
 
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
