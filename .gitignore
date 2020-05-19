@@ -30,6 +30,7 @@ override.tf.json
 #
 # Credentials
 credentials.json
+hopr/hopr-*.json
 
 # Keys
 *.pub
