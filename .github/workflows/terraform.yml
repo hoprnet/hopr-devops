@@ -71,4 +71,4 @@ jobs:
 
     - name: Output IP from Terraform
       working-directory: hopr
-      run: echo $(terraform output ip)
+      run: echo $(terraform output ipv4)
