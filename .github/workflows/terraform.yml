@@ -45,7 +45,7 @@ jobs:
     # Ensure we have the credentials for our datacenter inside the folder for Terraform to use
     - name: Setup Terraform Keys
       working-directory: hopr
-      run: echo ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }} > hopr-ch-develop.json
+      run: echo ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }} | base64 -d > hopr-ch-develop.json
 
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
