@@ -37,6 +37,10 @@ jobs:
     - name: Setup Daneel's key
       run: echo ${{ secrets.SSH_PUB_KEY }} > key.pub
 
+    # Ensure we have the credentials for our datacenter inside the folder for Terraform to use
+    - name: Setup Terraform Keys
+      run: echo ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }} > hopr-ch-develop.json
+
     - name: Reviewing gcloud setup
       run: gcloud info
 

@@ -46,8 +46,10 @@ resource "google_compute_instance" "vm" {
   tags = ["hopr-container-vm"]
 
   metadata = {
-    ssh-keys                  = "daneel:${file("../key.pub")}"
+    ssh-keys                  = "daneel:${file("key.pub")}"
     gce-container-declaration = module.hopr-container.metadata_value
+    google-logging-enabled    = "true"
+    google-monitoring-enabled = "true"
   }
 
   labels = {
