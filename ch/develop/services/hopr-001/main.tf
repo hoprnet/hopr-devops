@@ -1,3 +1,17 @@
+terraform {
+  backend "gcs" {
+    bucket = "hopr-ch-develop-terraform-state"
+    prefix = "terraform/state"
+  }
+}
+
+provider google {
+  credentials = "../../credentials.json"
+  project     = "hopr-ch-develop"
+  region      = "europe-west6"
+  version     = "~> 3.0"
+}
+
 module "hopr-node" {
   source                = "../../../../modules/services/hopr"
   name                  = "hopr-ch-develop-container"
