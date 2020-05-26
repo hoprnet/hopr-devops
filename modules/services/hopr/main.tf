@@ -3,7 +3,7 @@ locals {
 }
 
 resource "google_compute_address" "static" {
-  name = "ipv4-address"
+  name = "${local.instance_name}-ipv4-address"
 }
 
 module "hopr-container" {
