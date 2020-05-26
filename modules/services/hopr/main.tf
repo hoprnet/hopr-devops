@@ -17,12 +17,10 @@ module "hopr-container" {
       {
         mountPath = "/app/db"
         name      = "hopr-db"
-        readOnly  = "false"
+        readOnly  = false
       }
     ]
-    args = [
-      var.container_arguments
-    ]
+    args = var.container_arguments
     env = [
       {
         name  = "HOST_IPV4"
@@ -43,7 +41,7 @@ module "hopr-container" {
     {
       name = "hopr-db"
       hostPath = {
-        path = "/app/db"
+        path = "/var/hopr/db"
       }
     }
   ]
