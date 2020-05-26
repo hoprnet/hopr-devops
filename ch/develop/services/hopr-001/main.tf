@@ -6,9 +6,9 @@ terraform {
 }
 
 provider google {
-  project     = "hopr-ch-develop"
-  region      = "europe-west6"
-  version     = "~> 3.0"
+  project = "hopr-ch-develop"
+  region  = "europe-west6"
+  version = "~> 3.0"
 }
 
 module "hopr-node" {
