@@ -38,37 +38,38 @@ jobs:
       run: gcloud info
 
     # Ensure we have Daneel's key in our filesystem before we add it to our servers as part of our setup
-    - name: Setup Daneel's key
-      working-directory: hopr
-      run: echo ${{ secrets.SSH_PUB_KEY }} > key.pub
+    - name: Setup Daneel's key in CH (Develop)
+      run: echo ${{ secrets.SSH_PUB_KEY }} > ch/develop/key.pub
 
     # Ensure we have the credentials for our datacenter inside the folder for Terraform to use
-    - name: Setup Terraform Keys
-      working-directory: hopr
-      run: echo ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }} | base64 -d > hopr-ch-develop.json
+    - name: Setup Terraform Keys for CH (Develop)
+      run: echo ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }} | base64 -d > ch/develop/credentials.json
 
+
+    # CH (Develop)
+  
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
-      working-directory: hopr
+      working-directory: ch/develop/services/hopr-001
       run: terraform init
 
     # Checks that all Terraform configuration files adhere to a canonical format
     - name: Terraform Format
-      working-directory: hopr
+      working-directory: ch/develop/services/hopr-001
       run: terraform fmt -check
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan
-      working-directory: hopr
+      working-directory: ch/develop/services/hopr-001
       run: terraform plan
     
       # On push to master, build or change infrastructure according to Terraform configuration files
       # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
     - name: Terraform Apply
-      working-directory: hopr
+      working-directory: ch/develop/services/hopr-001
       if: github.ref == 'refs/heads/master' && github.event_name == 'push'
       run: terraform apply -auto-approve
 
     - name: Output IP from Terraform
-      working-directory: hopr
+      working-directory: ch/develop/services/hopr-001
       run: echo $(terraform output ipv4)

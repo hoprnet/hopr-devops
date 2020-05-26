@@ -9,17 +9,44 @@ resource "google_compute_address" "static" {
 module "hopr-container" {
   source         = "terraform-google-modules/container-vm/google"
   version        = "2.0.0"
-  cos_image_name = var.cos_image_name
+  cos_image_name = "cos-stable-81-12871-103-0"
 
   container = {
     image = var.container_image
+    volumeMounts = [
+      {
+        mountPath = "/app/db"
+        name      = "hopr-db"
+        readOnly  = "false"
+      }
+    ]
+    args = [
+      var.container_arguments
+    ]
     env = [
       {
-        name  = "TEST_VAR"
-        value = var.env_welcome
+        name  = "HOST_IPV4"
+        value = var.env_HOST_IPV4
+      },
+      {
+        name  = "BOOTSTRAP_SERVERS"
+        value = var.env_BOOTSTRAP_SERVERS
+      },
+      {
+        name  = "ETHEREUM_PROVIDER"
+        value = var.env_ETHEREUM_PROVIDER
       },
     ]
   }
+
+  volumes = [
+    {
+      name = "hopr-db"
+      hostPath = {
+        path = "/app/db"
+      }
+    }
+  ]
 
   restart_policy = "Always"
 }
@@ -46,7 +73,7 @@ resource "google_compute_instance" "vm" {
   tags = ["hopr-container-vm"]
 
   metadata = {
-    ssh-keys                  = "daneel:${file("key.pub")}"
+    ssh-keys                  = "daneel:${file("${var.key}")}"
     gce-container-declaration = module.hopr-container.metadata_value
     google-logging-enabled    = "true"
     google-monitoring-enabled = "true"
@@ -64,8 +91,8 @@ resource "google_compute_instance" "vm" {
   }
 }
 
-resource "google_compute_firewall" "http-access" {
-  name    = "${local.instance_name}-http"
+resource "google_compute_firewall" "tcp-access" {
+  name    = "${local.instance_name}-tcp"
   project = var.project_id
   network = "default"
 

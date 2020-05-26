@@ -1,25 +1,15 @@
 variable "name" {
-  default     = "hopr-ch-develop-container"
   description = "Name to use in all resources of this module"
 }
 variable "credentials" {
-  default     = "hopr-ch-develop.json"
   description = "Service account credentials JSON file"
 }
+variable "key" {
+  description = "SSH Public Key used for accessing the Daneel’s account"
+}
 variable "instance_name" {
-  default     = "hopr-ch-develop-001"
   description = "The desired name to assign to the deployed instance"
 }
-variable "cos_image_name" {
-  default     = "cos-stable-81-12871-103-0"
-  description = "Container Optimised version number"
-}
-variable "env_welcome" {
-  default     = "Welcome to HOPR"
-  description = "Welcome message from our container"
-}
-
-# Configurable Variables
 variable "project_id" {
   description = "GCP project ID"
 }
@@ -37,4 +27,16 @@ variable "container_image" {
 }
 variable "image_port" {
   description = "Container listening port"
+}
+variable "container_arguments" {
+  description = "Container arguments"
+}
+variable "env_HOST_IPV4" {
+  description = "Host HOPR node will listen to"
+}
+variable "env_BOOTSTRAP_SERVERS" {
+  description = "HOPR Bootstrap Servers"
+}
+variable "env_ETHEREUM_PROVIDER" {
+  description = "HOPR Network and Provider"
 }
