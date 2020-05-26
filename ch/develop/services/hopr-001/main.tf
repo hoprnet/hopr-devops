@@ -6,7 +6,6 @@ terraform {
 }
 
 provider google {
-  credentials = "../../credentials.json"
   project     = "hopr-ch-develop"
   region      = "europe-west6"
   version     = "~> 3.0"
@@ -26,6 +25,5 @@ module "hopr-node" {
   env_HOST_IPV4         = "0.0.0.0:9091"
   env_BOOTSTRAP_SERVERS = "/dns4/bootstrap01.hoprnet.io/tcp/9091/p2p/16Uiu2HAm3mkxuhtz2q8aFdNtUXkpp7T3Pqk6pZThtYEnVYetPhyo"
   container_arguments   = "-p 123456"
-  credentials           = "../../credentials.json"
   key                   = "../../key.pub"
 }

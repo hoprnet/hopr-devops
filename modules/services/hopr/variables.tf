@@ -1,9 +1,6 @@
 variable "name" {
   description = "Name to use in all resources of this module"
 }
-variable "credentials" {
-  description = "Service account credentials JSON file"
-}
 variable "key" {
   description = "SSH Public Key used for accessing the Daneel’s account"
 }
