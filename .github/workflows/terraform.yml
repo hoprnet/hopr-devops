@@ -37,16 +37,12 @@ jobs:
     - name: Reviewing gcloud setup
       run: gcloud info
 
+    # CH (Develop)
+
     # Ensure we have Daneel's key in our filesystem before we add it to our servers as part of our setup
     - name: Setup Daneel's key in CH (Develop)
-      run: echo ${{ secrets.SSH_PUB_KEY }} > ch/develop/key.pub
-
-    # Ensure we have the credentials for our datacenter inside the folder for Terraform to use
-    - name: Setup Terraform Keys for CH (Develop)
-      run: echo ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }} | base64 -d > ch/develop/credentials.json
-
-
-    # CH (Develop)
+      working-directory: ch/develop/services/hopr-001
+      run: echo ${{ secrets.SSH_PUB_KEY }} > key.pub
   
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init

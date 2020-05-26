@@ -25,7 +25,7 @@ module "hopr-node" {
   env_HOST_IPV4         = "0.0.0.0:9091"
   env_BOOTSTRAP_SERVERS = "/dns4/bootstrap01.hoprnet.io/tcp/9091/p2p/16Uiu2HAm3mkxuhtz2q8aFdNtUXkpp7T3Pqk6pZThtYEnVYetPhyo"
   container_arguments   = "-p 123456"
-  key                   = "../../key.pub"
+  key                   = "key.pub"
 }
 
 output "ipv4" {
