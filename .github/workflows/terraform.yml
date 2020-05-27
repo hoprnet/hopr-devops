@@ -3,8 +3,7 @@ name: 'Terraform'
 on:
   push:
     branches:
-    - master
-  pull_request:
+    - ch-develop
 
 jobs:
   terraform:
@@ -37,35 +36,34 @@ jobs:
     - name: Reviewing gcloud setup
       run: gcloud info
 
-    # CH (Develop)
+    # CH (Develop) Bootstrap Nodes
 
     # Ensure we have Daneel's key in our filesystem before we add it to our servers as part of our setup
     - name: Setup Daneel's key in CH (Develop)
-      working-directory: ch/develop/services/hopr-001
+      working-directory: ch/develop/services/hopr-bootstrap
       run: echo ${{ secrets.SSH_PUB_KEY }} > key.pub
   
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
-      working-directory: ch/develop/services/hopr-001
+      working-directory: ch/develop/services/hopr-bootstrap
       run: terraform init
 
     # Checks that all Terraform configuration files adhere to a canonical format
     - name: Terraform Format
-      working-directory: ch/develop/services/hopr-001
+      working-directory: ch/develop/services/hopr-bootstrap
       run: terraform fmt -check
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan
-      working-directory: ch/develop/services/hopr-001
+      working-directory: ch/develop/services/hopr-bootstrap
       run: terraform plan
     
-      # On push to master, build or change infrastructure according to Terraform configuration files
-      # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
+    # Applies execution plan to our given Datacenter
     - name: Terraform Apply
-      working-directory: ch/develop/services/hopr-001
-      if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+      working-directory: ch/develop/services/hopr-bootstrap
       run: terraform apply -auto-approve
 
+    # Output information about our bootstrap nodes
     - name: Output IP from Terraform
-      working-directory: ch/develop/services/hopr-001
-      run: echo $(terraform output ipv4)
+      working-directory: ch/develop/services/hopr-bootstrap
+      run: echo $(terraform output ipv4-bootstrap-001) && echo $(terraform output ipv4-bootstrap-002)
