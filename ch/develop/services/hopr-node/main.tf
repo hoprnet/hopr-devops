@@ -21,6 +21,7 @@ module "hopr-node-001" {
   env_ETHEREUM_PROVIDER = "wss://kovan.infura.io/ws/v3/f7240372c1b442a6885ce9bb825ebc36"
   env_HOST_IPV4         = "0.0.0.0:9091"
   env_BOOTSTRAP_SERVERS = local.bootstrap_servers
+  env_DEBUG             = "hopr-core*"
 
   container_arguments = ["-p", "111111"]
   image_port          = "9091"
@@ -40,6 +41,7 @@ module "hopr-node-002" {
   env_ETHEREUM_PROVIDER = "wss://kovan.infura.io/ws/v3/f7240372c1b442a6885ce9bb825ebc36"
   env_HOST_IPV4         = "0.0.0.0:9091"
   env_BOOTSTRAP_SERVERS = local.bootstrap_servers
+  env_DEBUG             = "hopr-core*"
 
   container_arguments = ["-p", "111111"]
   image_port          = "9091"
@@ -59,6 +61,7 @@ module "hopr-node-003" {
   env_ETHEREUM_PROVIDER = "wss://kovan.infura.io/ws/v3/f7240372c1b442a6885ce9bb825ebc36"
   env_HOST_IPV4         = "0.0.0.0:9091"
   env_BOOTSTRAP_SERVERS = local.bootstrap_servers
+  env_DEBUG             = "hopr-core*"
 
   container_arguments = ["-p", "111111"]
   image_port          = "9091"
@@ -78,6 +81,7 @@ module "hopr-node-004" {
   env_ETHEREUM_PROVIDER = "wss://kovan.infura.io/ws/v3/f7240372c1b442a6885ce9bb825ebc36"
   env_HOST_IPV4         = "0.0.0.0:9091"
   env_BOOTSTRAP_SERVERS = local.bootstrap_servers
+  env_DEBUG             = "hopr-core*"
 
   container_arguments = ["-p", "111111"]
   image_port          = "9091"
@@ -97,6 +101,7 @@ module "hopr-node-005" {
   env_ETHEREUM_PROVIDER = "wss://kovan.infura.io/ws/v3/f7240372c1b442a6885ce9bb825ebc36"
   env_HOST_IPV4         = "0.0.0.0:9091"
   env_BOOTSTRAP_SERVERS = local.bootstrap_servers
+  env_DEBUG             = "hopr-core*"
 
   container_arguments = ["-p", "111111"]
   image_port          = "9091"

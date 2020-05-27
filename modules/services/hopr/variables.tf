@@ -34,3 +34,6 @@ variable "env_BOOTSTRAP_SERVERS" {
 variable "env_ETHEREUM_PROVIDER" {
   description = "HOPR Network and Provider"
 }
+variable "env_DEBUG" {
+  description = "HOPR Debug Flags"
+}

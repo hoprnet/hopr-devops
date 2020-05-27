@@ -35,6 +35,10 @@ module "hopr-container" {
         name  = "ETHEREUM_PROVIDER"
         value = var.env_ETHEREUM_PROVIDER
       },
+      {
+        name  = "DEBUG"
+        value = var.env_DEBUG
+      }
     ]
   }
 
