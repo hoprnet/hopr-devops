@@ -27,7 +27,7 @@ module "hopr-node-bootstrap-001" {
   region          = "europe-west6"
   zone            = "europe-west6-a"
   client_email    = "terraform@hopr-ch-develop.iam.gserviceaccount.com"
-  container_image = "gcr.io/hoprassociation/hopr-core:0.0.1"
+  container_image = "gcr.io/hoprassociation/hopr-core:libp2p-tcp"
   key             = "key.pub"
 }
 
@@ -47,7 +47,7 @@ module "hopr-node-bootstrap-002" {
   region          = "europe-west6"
   zone            = "europe-west6-a"
   client_email    = "terraform@hopr-ch-develop.iam.gserviceaccount.com"
-  container_image = "gcr.io/hoprassociation/hopr-core:0.0.1"
+  container_image = "gcr.io/hoprassociation/hopr-core:libp2p-tcp"
   key             = "key.pub"
 }
 
