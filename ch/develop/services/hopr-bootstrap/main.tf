@@ -12,41 +12,41 @@ provider google {
 }
 
 module "hopr-node-bootstrap-001" {
-  instance_name         = "hopr-ch-develop-bootstrap-001"
+  instance_name = "hopr-ch-develop-bootstrap-001"
 
   env_ETHEREUM_PROVIDER = "wss://kovan.infura.io/ws/v3/f7240372c1b442a6885ce9bb825ebc36"
   env_HOST_IPV4         = "0.0.0.0:9091"
   env_BOOTSTRAP_SERVERS = ""
 
-  container_arguments   = ["-b", "-p", "111111"]
-  image_port            = "9091"
+  container_arguments = ["-b", "-p", "111111"]
+  image_port          = "9091"
 
-  source                = "../../../../modules/services/hopr"
-  project_id            = "hopr-ch-develop"
-  region                = "europe-west6"
-  zone                  = "europe-west6-a"  
-  client_email          = "terraform@hopr-ch-develop.iam.gserviceaccount.com"
-  container_image       = "gcr.io/hoprassociation/hopr-core:0.0.1"
-  key                   = "key.pub"
+  source          = "../../../../modules/services/hopr"
+  project_id      = "hopr-ch-develop"
+  region          = "europe-west6"
+  zone            = "europe-west6-a"
+  client_email    = "terraform@hopr-ch-develop.iam.gserviceaccount.com"
+  container_image = "gcr.io/hoprassociation/hopr-core:0.0.1"
+  key             = "key.pub"
 }
 
 module "hopr-node-bootstrap-002" {
-  instance_name         = "hopr-ch-develop-bootstrap-002"
+  instance_name = "hopr-ch-develop-bootstrap-002"
 
   env_ETHEREUM_PROVIDER = "wss://kovan.infura.io/ws/v3/f7240372c1b442a6885ce9bb825ebc36"
   env_HOST_IPV4         = "0.0.0.0:9091"
   env_BOOTSTRAP_SERVERS = ""
 
-  container_arguments   = ["-b", "-p", "111111"]
-  image_port            = "9091"
+  container_arguments = ["-b", "-p", "111111"]
+  image_port          = "9091"
 
-  source                = "../../../../modules/services/hopr"
-  project_id            = "hopr-ch-develop"
-  region                = "europe-west6"
-  zone                  = "europe-west6-a"  
-  client_email          = "terraform@hopr-ch-develop.iam.gserviceaccount.com"
-  container_image       = "gcr.io/hoprassociation/hopr-core:0.0.1"
-  key                   = "key.pub"
+  source          = "../../../../modules/services/hopr"
+  project_id      = "hopr-ch-develop"
+  region          = "europe-west6"
+  zone            = "europe-west6-a"
+  client_email    = "terraform@hopr-ch-develop.iam.gserviceaccount.com"
+  container_image = "gcr.io/hoprassociation/hopr-core:0.0.1"
+  key             = "key.pub"
 }
 
 output "ipv4-bootstrap-001" {

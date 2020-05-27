@@ -13,7 +13,7 @@ module "hopr-container" {
 
   container = {
     image = var.container_image
-    tty: true
+    tty : true
     volumeMounts = [
       {
         mountPath = "/app/db"
