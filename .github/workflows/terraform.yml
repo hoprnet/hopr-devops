@@ -42,7 +42,7 @@ jobs:
     - name: Setup Daneel's key in CH (Develop)
       working-directory: ch/develop/services/hopr-bootstrap
       run: echo ${{ secrets.SSH_PUB_KEY }} > key.pub
-  
+
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
       working-directory: ch/develop/services/hopr-bootstrap
@@ -57,7 +57,7 @@ jobs:
     - name: Terraform Plan
       working-directory: ch/develop/services/hopr-bootstrap
       run: terraform plan
-    
+
     # Applies execution plan to our given Datacenter
     - name: Terraform Apply
       working-directory: ch/develop/services/hopr-bootstrap
@@ -66,4 +66,43 @@ jobs:
     # Output information about our bootstrap nodes
     - name: Output IP from Terraform
       working-directory: ch/develop/services/hopr-bootstrap
-      run: echo $(terraform output ipv4-bootstrap-001) && echo $(terraform output ipv4-bootstrap-002)
+      run: |
+        echo "Bootstrap Node 001: $(terraform output ipv4-bootstrap-001)" && \
+        echo "Bootstrap Node 002: $(terraform output ipv4-bootstrap-002)"
+
+    # CH (Develop) Nodes
+
+    # Ensure we have Daneel's key in our filesystem before we add it to our servers as part of our setup
+    - name: Setup Daneel's key in CH (Develop)
+      working-directory: ch/develop/services/hopr-node
+      run: echo ${{ secrets.SSH_PUB_KEY }} > key.pub
+
+    # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
+    - name: Terraform Init
+      working-directory: ch/develop/services/hopr-node
+      run: terraform init
+
+    # Checks that all Terraform configuration files adhere to a canonical format
+    - name: Terraform Format
+      working-directory: ch/develop/services/hopr-node
+      run: terraform fmt -check
+
+    # Generates an execution plan for Terraform
+    - name: Terraform Plan
+      working-directory: ch/develop/services/hopr-node
+      run: terraform plan
+
+    # Applies execution plan to our given Datacenter
+    - name: Terraform Apply
+      working-directory: ch/develop/services/hopr-node
+      run: terraform apply -auto-approve
+
+    # Output information about our bootstrap nodes
+    - name: Output IP from Terraform
+      working-directory: ch/develop/services/hopr-node
+      run: |
+        echo "Bootstrap Node 001: $(terraform output ipv4-node-001)" && \
+        echo "Bootstrap Node 002: $(terraform output ipv4-node-002)" && \
+        echo "Bootstrap Node 003: $(terraform output ipv4-node-003)" && \
+        echo "Bootstrap Node 004: $(terraform output ipv4-node-004)" && \
+        echo "Bootstrap Node 005: $(terraform output ipv4-node-005)"
