@@ -12,7 +12,7 @@ provider google {
 }
 
 locals {
-  bootstrap_servers = "/ip4/34.65.237.196/tcp/9091/p2p/16Uiu2HAmVQNGuAyitMWHmuJ1UTyeBALyiv9KthDgAupAug8eRv7c,/ip4/34.65.119.138/tcp/9091/p2p/16Uiu2HAmUx59dXE9GgxaXW68sFhS3MdJcvZomSWkDU28J7DacHWW"
+  bootstrap_servers = "/ip4/34.65.51.50/tcp/9091/p2p/16Uiu2HAm1nio4WMVq1in591BoSQFhVfo8ZFrJfg2EZHFqasqE5NN,/ip4/34.65.75.45/tcp/9091/p2p/16Uiu2HAm5ak44wdD2TzsyYXYBprsqjhNSTuSsdUpJ84j5XtkXWUp"
 }
 
 module "hopr-node-001" {
@@ -31,7 +31,7 @@ module "hopr-node-001" {
   region          = "europe-west6"
   zone            = "europe-west6-a"
   client_email    = "terraform@hopr-ch-develop.iam.gserviceaccount.com"
-  container_image = "gcr.io/hoprassociation/hopr-core:libp2p-tcp"
+  container_image = "gcr.io/hoprassociation/hopr-core:nat-traversal-rc"
   key             = "key.pub"
 }
 
@@ -51,7 +51,7 @@ module "hopr-node-002" {
   region          = "europe-west6"
   zone            = "europe-west6-a"
   client_email    = "terraform@hopr-ch-develop.iam.gserviceaccount.com"
-  container_image = "gcr.io/hoprassociation/hopr-core:libp2p-tcp"
+  container_image = "gcr.io/hoprassociation/hopr-core:nat-traversal-rc"
   key             = "key.pub"
 }
 
@@ -71,7 +71,7 @@ module "hopr-node-003" {
   region          = "europe-west6"
   zone            = "europe-west6-a"
   client_email    = "terraform@hopr-ch-develop.iam.gserviceaccount.com"
-  container_image = "gcr.io/hoprassociation/hopr-core:libp2p-tcp"
+  container_image = "gcr.io/hoprassociation/hopr-core:nat-traversal-rc"
   key             = "key.pub"
 }
 
@@ -91,7 +91,7 @@ module "hopr-node-004" {
   region          = "europe-west6"
   zone            = "europe-west6-a"
   client_email    = "terraform@hopr-ch-develop.iam.gserviceaccount.com"
-  container_image = "gcr.io/hoprassociation/hopr-core:libp2p-tcp"
+  container_image = "gcr.io/hoprassociation/hopr-core:nat-traversal-rc"
   key             = "key.pub"
 }
 
@@ -111,7 +111,7 @@ module "hopr-node-005" {
   region          = "europe-west6"
   zone            = "europe-west6-a"
   client_email    = "terraform@hopr-ch-develop.iam.gserviceaccount.com"
-  container_image = "gcr.io/hoprassociation/hopr-core:libp2p-tcp"
+  container_image = "gcr.io/hoprassociation/hopr-core:nat-traversal-rc"
   key             = "key.pub"
 }
 
