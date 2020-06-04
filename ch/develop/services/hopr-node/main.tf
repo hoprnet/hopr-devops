@@ -24,7 +24,7 @@ resource "random_shuffle" "bootstrap" {
 }
 
 module "hopr-node" {
-  instance_count = 6
+  instance_count = 5
   instance_name  = "hopr-node"
   prefix         = "ch-develop"
 
