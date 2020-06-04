@@ -66,8 +66,7 @@ jobs:
     # Output information about our bootstrap nodes
     - name: Output IP from Terraform
       working-directory: ch/develop/services/hopr-bootstrap
-      run: |
-        echo "$(terraform output instances)"
+      run: echo "$(terraform output instances)"
 
     # CH (Develop) Nodes
 
@@ -99,5 +98,4 @@ jobs:
     # Output information about our bootstrap nodes
     - name: Output IP from Terraform
       working-directory: ch/develop/services/hopr-node
-      run: |
-      echo "$(terraform output instances)"
+      run: echo "$(terraform output instances)"
