@@ -13,6 +13,16 @@ variable "region" {
 variable "zone" {
   description = "GCP zone"
 }
+variable "instance_count" {
+  description = "Number of instances to create."
+  type        = number
+  default     = 1
+}
+variable "prefix" {
+  description = "Prefix to prepend to resource names."
+  type        = string
+  default     = ""
+}
 variable "client_email" {
   description = "Service account email"
 }

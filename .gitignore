@@ -35,3 +35,7 @@ hopr/hopr-*.json
 # Keys
 *.pub
 *.key
+
+# HOPR specific files
+db
+tmp

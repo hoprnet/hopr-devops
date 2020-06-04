@@ -1,4 +1,4 @@
-output "ipv4" {
-  description = "The public IP address of the deployed instance"
-  value       = google_compute_instance.vm.network_interface.0.access_config.0.nat_ip
+output "instances" {
+  description = "Instance name => address map."
+  value       = zipmap(google_compute_instance.vm.*.name, google_compute_address.static.*.address)
 }

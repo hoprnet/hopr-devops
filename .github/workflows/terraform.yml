@@ -67,8 +67,7 @@ jobs:
     - name: Output IP from Terraform
       working-directory: ch/develop/services/hopr-bootstrap
       run: |
-        echo "Bootstrap Node 001: $(terraform output ipv4-bootstrap-001)" && \
-        echo "Bootstrap Node 002: $(terraform output ipv4-bootstrap-002)"
+        echo "$(terraform output instances)"
 
     # CH (Develop) Nodes
 
@@ -101,8 +100,4 @@ jobs:
     - name: Output IP from Terraform
       working-directory: ch/develop/services/hopr-node
       run: |
-        echo "Bootstrap Node 001: $(terraform output ipv4-node-001)" && \
-        echo "Bootstrap Node 002: $(terraform output ipv4-node-002)" && \
-        echo "Bootstrap Node 003: $(terraform output ipv4-node-003)" && \
-        echo "Bootstrap Node 004: $(terraform output ipv4-node-004)" && \
-        echo "Bootstrap Node 005: $(terraform output ipv4-node-005)"
+      echo "$(terraform output instances)"
