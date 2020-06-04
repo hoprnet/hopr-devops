@@ -116,7 +116,7 @@ resource "google_compute_instance" "vm" {
   }
 }
 resource "google_compute_firewall" "tcp-access" {
-  name    = "${local.prefix}tcp"
+  name    = "${local.prefix}${local.instance_name}-tcp"
   project = var.project_id
   network = "default"
 
