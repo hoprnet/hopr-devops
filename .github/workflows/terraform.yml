@@ -24,7 +24,7 @@ jobs:
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
       with:
-        terraform_version: 0.12.25
+        terraform_version: 0.13.0
 
     # Create default credentials for Terraform from the GitHub secrets variable
     - name: Setup Google Cloud Credentials
