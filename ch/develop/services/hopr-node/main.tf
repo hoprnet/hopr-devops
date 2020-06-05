@@ -30,7 +30,7 @@ module "hopr-node" {
 
   env_ETHEREUM_PROVIDER = "wss://kovan.infura.io/ws/v3/f7240372c1b442a6885ce9bb825ebc36"
   env_HOST_IPV4         = "0.0.0.0:9091"
-  env_BOOTSTRAP_SERVERS = "${random_shuffle.bootstrap.result}"
+  env_BOOTSTRAP_SERVERS = random_shuffle.bootstrap.result[0]
   env_DEBUG             = "hopr-core*"
 
   container_arguments = ["-p", "111111"]
@@ -48,4 +48,9 @@ module "hopr-node" {
 output "instances" {
   description = "The mapping between instances and their addresses"
   value       = module.hopr-node.instances
+}
+
+output "bootstrap_node" {
+  description = "The bootstrap node used for the HOPR node"
+  value       = random_shuffle.bootstrap.result[0]
 }
