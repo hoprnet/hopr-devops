@@ -34,7 +34,7 @@ module "hopr-container" {
       },
       {
         name  = "BOOTSTRAP_SERVERS"
-        value = var.env_BOOTSTRAP_SERVERS
+        value = var.is_bootstrap ? "" : var.bootstrap_servers[var.instance_count]
       },
       {
         name  = "ETHEREUM_PROVIDER"
@@ -88,7 +88,7 @@ resource "google_compute_instance" "vm" {
   tags = ["hopr-container-vm"]
 
   metadata = {
-    ssh-keys = "daneel:${file("${var.key}")}"
+    ssh-keys                  = "daneel:${file("${var.key}")}"
     gce-container-declaration = module.hopr-container.metadata_value
     google-logging-enabled    = "true"
     google-monitoring-enabled = "true"

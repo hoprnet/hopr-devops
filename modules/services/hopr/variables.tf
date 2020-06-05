@@ -32,13 +32,17 @@ variable "container_image" {
 variable "image_port" {
   description = "Container listening port"
 }
+variable "is_bootstrap" {
+  description = "Whether the node is a bootstrap or not"
+}
 variable "container_arguments" {
   description = "Container arguments"
 }
 variable "env_HOST_IPV4" {
   description = "Host HOPR node will listen to"
 }
-variable "env_BOOTSTRAP_SERVERS" {
+variable "bootstrap_servers" {
+  type        = list(string)
   description = "HOPR Bootstrap Servers"
 }
 variable "env_ETHEREUM_PROVIDER" {
