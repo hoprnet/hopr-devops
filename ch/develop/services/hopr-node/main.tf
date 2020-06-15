@@ -3,12 +3,7 @@ locals {
   environment = "develop"
   prefix      = "${local.datacenter}-${local.environment}"
   bootstrap_servers = [
-    "/dns4/ch-test-01.hoprnet.io/tcp/9091/p2p/16Uiu2HAmThyWP5YWutPmYk9yUZ48ryWyZ7Cf6pMTQduvHUS9sGE7",
-    "/dns4/ch-test-02.hoprnet.io/tcp/9091/p2p/16Uiu2HAmBSzk28qQ8bfpwVgEjef4q51kGg8GjEk3MinyyTB2WTGn",
-    "/dns4/ch-test-03.hoprnet.io/tcp/9091/p2p/16Uiu2HAm4H1ZxPb9KkoYD928Smrjnr2igYP8vBFbZKs5B8gchTnT",
-    "/ip4/34.65.237.196/tcp/9091/p2p/16Uiu2HAmThyWP5YWutPmYk9yUZ48ryWyZ7Cf6pMTQduvHUS9sGE7",
-    "/ip4/34.65.119.138/tcp/9091/p2p/16Uiu2HAmBSzk28qQ8bfpwVgEjef4q51kGg8GjEk3MinyyTB2WTGn",
-    "/ip4/34.65.120.13/tcp/9091/p2p/16Uiu2HAm4H1ZxPb9KkoYD928Smrjnr2igYP8vBFbZKs5B8gchTnT"
+    "/ip4/34.65.114.152/tcp/9091/p2p/16Uiu2HAm4R11E8vDvf1ZKQc4qyeuWGSm6RDumQStCdrG8r2Gpe7P"
   ]
 }
 
