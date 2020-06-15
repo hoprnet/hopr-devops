@@ -24,11 +24,10 @@ module "hopr-node-bootstrap" {
   prefix            = local.prefix
   bootstrap_servers = []
   is_bootstrap      = true
-  machine_type      = "n1.standard-1"
+  machine_type      = "n1-standard-1"
 
   env_ETHEREUM_PROVIDER = "wss://kovan.infura.io/ws/v3/f7240372c1b442a6885ce9bb825ebc36"
   env_HOST_IPV4         = "0.0.0.0:9091"
-  env_DEBUG             = "hopr-core*"
 
   container_arguments = ["-b", "-p", "111111"]
   image_port          = "9091"
