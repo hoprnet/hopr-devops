@@ -20,7 +20,7 @@ variable "instance_count" {
 }
 variable "machine_type" {
   description = "Type of machine to be used"
-  default     = "g1.small"
+  default     = "g1-small"
 }
 variable "prefix" {
   description = "Prefix to prepend to resource names."
