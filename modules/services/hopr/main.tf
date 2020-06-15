@@ -64,7 +64,7 @@ resource "google_compute_instance" "vm" {
   name         = "${local.prefix}${local.instance_name}-${count.index + 1}"
   description  = "Terraform-Managed."
   project      = var.project_id
-  machine_type = "g1-small"
+  machine_type = var.machine_type
   zone         = var.zone
 
   scheduling {

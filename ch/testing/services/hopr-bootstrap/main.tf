@@ -1,13 +1,13 @@
 locals {
   datacenter  = "ch"
-  environment = "develop"
+  environment = "testing"
   prefix      = "${local.datacenter}-${local.environment}"
 }
 
 
 terraform {
   backend "gcs" {
-    bucket = "hopr-ch-develop-terraform-state"
+    bucket = "hopr-ch-testing-terraform-state"
     prefix = "terraform/state-bootstrap"
   }
 }

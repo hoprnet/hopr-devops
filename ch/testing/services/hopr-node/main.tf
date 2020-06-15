@@ -1,6 +1,6 @@
 locals {
   datacenter  = "ch"
-  environment = "develop"
+  environment = "testing"
   prefix      = "${local.datacenter}-${local.environment}"
   bootstrap_servers = [
     "/dns4/ch-test-01.hoprnet.io/tcp/9091/p2p/16Uiu2HAm2n7Lfn76Ex7JnesxXjCtoPbLA6S1Q3boEELETBCD9RKc",
@@ -14,7 +14,7 @@ locals {
 
 terraform {
   backend "gcs" {
-    bucket = "hopr-ch-develop-terraform-state"
+    bucket = "hopr-ch-testing-terraform-state"
     prefix = "terraform/state-nodes"
   }
 }

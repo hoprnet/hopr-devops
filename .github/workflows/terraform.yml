@@ -3,17 +3,40 @@ name: 'Terraform'
 on:
   push:
     branches:
-    - ch-develop
+    - master
 
 jobs:
   terraform:
-    name: 'Terraform'
-    runs-on: ubuntu-latest
+    #                    __ _                       _   _
+    #    ___ ___  _ __  / _(_) __ _ _   _ _ __ __ _| |_(_) ___  _ __
+    #   / __/ _ \| '_ \| |_| |/ _` | | | | '__/ _` | __| |/ _ \| '_ \
+    #  | (_| (_) | | | |  _| | (_| | |_| | | | (_| | |_| | (_) | | | |
+    #   \___\___/|_| |_|_| |_|\__, |\__,_|_|  \__,_|\__|_|\___/|_| |_|
+    #                         |___/
 
-    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
+    runs-on: ubuntu-latest
     defaults:
       run:
         shell: bash
+    strategy:
+      matrix:
+        datacenter: ['ch']
+        environment: ['develop', 'testing']
+        node_type: ['bootstrap', 'node']
+        include:
+          - datacenter: ch
+            environment: develop
+            service_account_json: {{ secrets.GOOGLE_APPLICATION_CREDENTIALS_CH_DEVELOP }}
+          - datacenter: ch
+            environment: testing
+            service_account_json: {{ secrets.GOOGLE_APPLICATION_CREDENTIALS_CH_DEVELOP }}
+
+    #            _
+    #   ___  ___| |_ _   _ _ __
+    #  / __|/ _ \ __| | | | '_ \
+    #  \__ \  __/ |_| |_| | |_) |
+    #  |___/\___|\__|\__,_| .__/
+    #                     |_|
 
     # Checkout the repository to the GitHub Actions runner
     steps:
@@ -29,73 +52,46 @@ jobs:
       uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
       with:
         version: '290.0.1'
-        service_account_key: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+        service_account_key: ${{ secrets[matrix.service_account_json] }}
         export_default_credentials: true
 
     # Ensuring the stored credentials have the proper information
     - name: Reviewing gcloud setup
       run: gcloud info
 
-    # CH (Develop) Bootstrap Nodes
+    #   _                       __
+    #  | |_ ___ _ __ _ __ __ _ / _| ___  _ __ _ __ ___
+    #  | __/ _ \ '__| '__/ _` | |_ / _ \| '__| '_ ` _ \
+    #  | ||  __/ |  | | | (_| |  _| (_) | |  | | | | | |
+    #   \__\___|_|  |_|  \__,_|_|  \___/|_|  |_| |_| |_|
+    #
 
     # Ensure we have Daneel's key in our filesystem before we add it to our servers as part of our setup
-    - name: Setup Daneel's key in CH (Develop)
-      working-directory: ch/develop/services/hopr-bootstrap
+    - name: Setup Daneel's key | ${{ matrix.datacenter }} - ${{ matrix.environment }}
+      working-directory: ${{ matrix.datacenter }}/${{ matrix.environment }}/services/hopr-${{ matrix.node_type }}
       run: echo ${{ secrets.SSH_PUB_KEY }} > key.pub
 
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
-    - name: Terraform Init
-      working-directory: ch/develop/services/hopr-bootstrap
+    - name: Terraform Init | ${{ matrix.datacenter }} - ${{ matrix.environment }}
+      working-directory: ${{ matrix.datacenter }}/${{ matrix.environment }}/services/hopr-${{ matrix.node_type }}
       run: terraform init
 
     # Checks that all Terraform configuration files adhere to a canonical format
-    - name: Terraform Format
-      working-directory: ch/develop/services/hopr-bootstrap
+    - name: Terraform Format | ${{ matrix.datacenter }} - ${{ matrix.environment }}
+      working-directory: ${{ matrix.datacenter }}/${{ matrix.environment }}/services/hopr-${{ matrix.node_type }}
       run: terraform fmt -check
 
     # Generates an execution plan for Terraform
-    - name: Terraform Plan
-      working-directory: ch/develop/services/hopr-bootstrap
+    - name: Terraform Plan | ${{ matrix.datacenter }} - ${{ matrix.environment }}
+      working-directory: ${{ matrix.datacenter }}/${{ matrix.environment }}/services/hopr-${{ matrix.node_type }}
       run: terraform plan
 
     # Applies execution plan to our given Datacenter
-    - name: Terraform Apply
-      working-directory: ch/develop/services/hopr-bootstrap
+    - name: Terraform Apply | ${{ matrix.datacenter }} - ${{ matrix.environment }}
+      working-directory: ${{ matrix.datacenter }}/${{ matrix.environment }}/services/hopr-${{ matrix.node_type }}
       run: terraform apply -auto-approve
 
     # Output information about our bootstrap nodes
-    - name: Output IP from Terraform
-      working-directory: ch/develop/services/hopr-bootstrap
-      run: echo "$(terraform output instances)"
-
-    # CH (Develop) Nodes
-
-    # Ensure we have Daneel's key in our filesystem before we add it to our servers as part of our setup
-    - name: Setup Daneel's key in CH (Develop)
-      working-directory: ch/develop/services/hopr-node
-      run: echo ${{ secrets.SSH_PUB_KEY }} > key.pub
-
-    # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
-    - name: Terraform Init
-      working-directory: ch/develop/services/hopr-node
-      run: terraform init
-
-    # Checks that all Terraform configuration files adhere to a canonical format
-    - name: Terraform Format
-      working-directory: ch/develop/services/hopr-node
-      run: terraform fmt -check
-
-    # Generates an execution plan for Terraform
-    - name: Terraform Plan
-      working-directory: ch/develop/services/hopr-node
-      run: terraform plan
-
-    # Applies execution plan to our given Datacenter
-    - name: Terraform Apply
-      working-directory: ch/develop/services/hopr-node
-      run: terraform apply -auto-approve
-
-    # Output information about our bootstrap nodes
-    - name: Output IP from Terraform
-      working-directory: ch/develop/services/hopr-node
+    - name: Output IP from Terraform | ${{ matrix.datacenter }} - ${{ matrix.environment }}
+      working-directory: ${{ matrix.datacenter }}/${{ matrix.environment }}/services/hopr-${{ matrix.node_type }}
       run: echo "$(terraform output instances)"

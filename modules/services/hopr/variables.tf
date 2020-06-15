@@ -18,6 +18,10 @@ variable "instance_count" {
   type        = number
   default     = 1
 }
+variable "machine_type" {
+  description = "Type of machine to be used"
+  default     = "g1.small"
+}
 variable "prefix" {
   description = "Prefix to prepend to resource names."
   type        = string
