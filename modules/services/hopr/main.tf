@@ -72,6 +72,8 @@ resource "google_compute_instance" "vm" {
     on_host_maintenance = "MIGRATE"
   }
 
+  allow_stopping_for_update = true
+
   boot_disk {
     initialize_params {
       image = module.hopr-container.source_image

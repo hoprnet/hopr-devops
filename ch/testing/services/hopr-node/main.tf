@@ -3,12 +3,12 @@ locals {
   environment = "testing"
   prefix      = "${local.datacenter}-${local.environment}"
   bootstrap_servers = [
-    "/dns4/ch-test-01.hoprnet.io/tcp/9091/p2p/16Uiu2HAm2n7Lfn76Ex7JnesxXjCtoPbLA6S1Q3boEELETBCD9RKc",
-    "/dns4/ch-test-02.hoprnet.io/tcp/9091/p2p/16Uiu2HAm9YbgfQ5yAPQ99ZgfCdJKcdn7tZ2xDBwvaaitfvXGgD2d",
-    "/dns4/ch-test-03.hoprnet.io/tcp/9091/p2p/16Uiu2HAmSDWT1xhYc7CYEunDoVY21aWA5LpXTTqZpxymFB34FFjH",
-    "/ip4/34.65.200.251/tcp/9091/p2p/16Uiu2HAm2n7Lfn76Ex7JnesxXjCtoPbLA6S1Q3boEELETBCD9RKc",
-    "/ip4/34.65.51.50/tcp/9091/p2p/16Uiu2HAm9YbgfQ5yAPQ99ZgfCdJKcdn7tZ2xDBwvaaitfvXGgD2d",
-    "/ip4/34.65.69.119/tcp/9091/p2p/16Uiu2HAmSDWT1xhYc7CYEunDoVY21aWA5LpXTTqZpxymFB34FFjH"
+    "/dns4/ch-test-01.hoprnet.io/tcp/9091/p2p/16Uiu2HAmThyWP5YWutPmYk9yUZ48ryWyZ7Cf6pMTQduvHUS9sGE7",
+    "/dns4/ch-test-02.hoprnet.io/tcp/9091/p2p/16Uiu2HAmBSzk28qQ8bfpwVgEjef4q51kGg8GjEk3MinyyTB2WTGn",
+    "/dns4/ch-test-03.hoprnet.io/tcp/9091/p2p/16Uiu2HAm4H1ZxPb9KkoYD928Smrjnr2igYP8vBFbZKs5B8gchTnT",
+    "/ip4/34.65.237.196/tcp/9091/p2p/16Uiu2HAmThyWP5YWutPmYk9yUZ48ryWyZ7Cf6pMTQduvHUS9sGE7",
+    "/ip4/34.65.119.138/tcp/9091/p2p/16Uiu2HAmBSzk28qQ8bfpwVgEjef4q51kGg8GjEk3MinyyTB2WTGn",
+    "/ip4/34.65.120.13/tcp/9091/p2p/16Uiu2HAm4H1ZxPb9KkoYD928Smrjnr2igYP8vBFbZKs5B8gchTnT"
   ]
 }
 
@@ -26,7 +26,7 @@ provider google {
 }
 
 module "hopr-node" {
-  instance_count    = 5
+  instance_count    = 3
   instance_name     = "hopr-node"
   prefix            = local.prefix
   bootstrap_servers = local.bootstrap_servers

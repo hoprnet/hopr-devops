@@ -19,11 +19,12 @@ provider google {
 }
 
 module "hopr-node-bootstrap" {
-  instance_count    = 3
+  instance_count    = 2
   instance_name     = "hopr-bootstrap"
   prefix            = local.prefix
   bootstrap_servers = []
   is_bootstrap      = true
+  machine_type      = "n1.standard-1"
 
   env_ETHEREUM_PROVIDER = "wss://kovan.infura.io/ws/v3/f7240372c1b442a6885ce9bb825ebc36"
   env_HOST_IPV4         = "0.0.0.0:9091"
