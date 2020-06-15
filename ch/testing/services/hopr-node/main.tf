@@ -14,8 +14,8 @@ locals {
 
 terraform {
   backend "gcs" {
-    bucket = "hopr-ch-testing-terraform-state"
-    prefix = "terraform/state-nodes"
+    bucket = "hopr-ch-testing-node-terraform-state"
+    prefix = "terraform/state"
   }
 }
 

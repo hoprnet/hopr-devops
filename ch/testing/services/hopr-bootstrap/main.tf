@@ -7,8 +7,8 @@ locals {
 
 terraform {
   backend "gcs" {
-    bucket = "hopr-ch-testing-terraform-state"
-    prefix = "terraform/state-bootstrap"
+    bucket = "hopr-ch-testing-bootstrap-terraform-state"
+    prefix = "terraform/state"
   }
 }
 

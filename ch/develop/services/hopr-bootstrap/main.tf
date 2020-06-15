@@ -7,8 +7,8 @@ locals {
 
 terraform {
   backend "gcs" {
-    bucket = "hopr-ch-develop-terraform-state"
-    prefix = "terraform/state-bootstrap"
+    bucket = "hopr-ch-develop-bootstrap-terraform-state"
+    prefix = "terraform/state"
   }
 }
 
@@ -24,6 +24,7 @@ module "hopr-node-bootstrap" {
   prefix            = local.prefix
   bootstrap_servers = []
   is_bootstrap      = true
+  machine_type      = "n1.standard-1"
 
   env_ETHEREUM_PROVIDER = "wss://kovan.infura.io/ws/v3/f7240372c1b442a6885ce9bb825ebc36"
   env_HOST_IPV4         = "0.0.0.0:9091"
