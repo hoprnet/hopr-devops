@@ -26,10 +26,10 @@ jobs:
         include:
           - datacenter: ch
             environment: develop
-            service_account_json: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_CH_DEVELOP }}
+            service_account_json: GOOGLE_APPLICATION_CREDENTIALS_CH_DEVELOP
           - datacenter: ch
             environment: testing
-            service_account_json: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_CH_DEVELOP }}
+            service_account_json: GOOGLE_APPLICATION_CREDENTIALS_CH_DEVELOP
 
     #            _
     #   ___  ___| |_ _   _ _ __
