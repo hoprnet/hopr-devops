@@ -54,4 +54,5 @@ variable "env_ETHEREUM_PROVIDER" {
 }
 variable "env_DEBUG" {
   description = "HOPR Debug Flags"
+  default     = ""
 }
