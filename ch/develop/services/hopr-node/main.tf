@@ -3,6 +3,8 @@ locals {
   environment = "develop"
   prefix      = "${local.datacenter}-${local.environment}"
   bootstrap_servers = [
+    "/ip4/34.65.114.152/tcp/9091/p2p/16Uiu2HAm4R11E8vDvf1ZKQc4qyeuWGSm6RDumQStCdrG8r2Gpe7P",
+    "/ip4/34.65.114.152/tcp/9091/p2p/16Uiu2HAm4R11E8vDvf1ZKQc4qyeuWGSm6RDumQStCdrG8r2Gpe7P",
     "/ip4/34.65.114.152/tcp/9091/p2p/16Uiu2HAm4R11E8vDvf1ZKQc4qyeuWGSm6RDumQStCdrG8r2Gpe7P"
   ]
 }
