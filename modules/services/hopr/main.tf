@@ -34,7 +34,7 @@ module "hopr-container" {
       },
       {
         name  = "BOOTSTRAP_SERVERS"
-        value = var.is_bootstrap ? "" : var.bootstrap_servers[var.instance_count]
+        value = var.is_bootstrap ? "" : var.bootstrap_servers[var.instance_count - 1]
       },
       {
         name  = "ETHEREUM_PROVIDER"
