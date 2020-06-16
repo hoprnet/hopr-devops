@@ -136,6 +136,11 @@ terraform output -json instances | jq -r 'to_entries[] | .value' | xargs -n1 -I 
 terraform output -json instances | jq -r 'to_entries[] | .value' | xargs -n1 -I {} ssh daneel@{} "docker ps -q --filter \"ancestor=hopr/chat\" | xargs -I [] docker restart []"
 ```
 
+#### SSH into a particular machine
+```bash
+ssh -i ~/.ssh/daneel_ed25519 daneel@$(terraform output -json instances | jq -r 'to_entries[] | .value' | head -n 1 | tail -n 1)
+```
+
 
 # Roadmap
 
