@@ -3,9 +3,9 @@ locals {
   environment = "develop"
   prefix      = "${local.datacenter}-${local.environment}"
   bootstrap_servers = [
-    "/ip4/34.65.114.152/tcp/9091/p2p/16Uiu2HAm4R11E8vDvf1ZKQc4qyeuWGSm6RDumQStCdrG8r2Gpe7P",
-    "/ip4/34.65.114.152/tcp/9091/p2p/16Uiu2HAm4R11E8vDvf1ZKQc4qyeuWGSm6RDumQStCdrG8r2Gpe7P",
-    "/ip4/34.65.114.152/tcp/9091/p2p/16Uiu2HAm4R11E8vDvf1ZKQc4qyeuWGSm6RDumQStCdrG8r2Gpe7P"
+    "/ip4/34.65.237.196/tcp/9091/p2p/16Uiu2HAmTr2MZhwzBH5VwsQDnw4nZHPouXycjmTEazkv3hfJC9nJ",
+    "/ip4/34.65.69.76/tcp/9091/p2p/16Uiu2HAkwmkw2JbNWqU9sVfyeEzFF9nm3vB9Ag4SkVjBDjEA3bis",
+    "/ip4/34.65.75.45/tcp/9091/p2p/16Uiu2HAkxfZ2GaSFtevoLCaDba5G6mypFF5JG686bzSTLZdLdsfR"
   ]
 }
 
