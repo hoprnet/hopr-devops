@@ -7,6 +7,27 @@ HOPR regional and zones configuration data used to deploy nodes in different env
 
 HOPR Services AG datacenter infrastructure is managed an automated via this repository. Executing changes and pushing these against `master` will automatically trigger our GitHub action under [./.github/workflows/terraform.yml](./.github/workflows/terraform.yml), which connects to our GCP account and deploys our [HOPR Chat Terraform Module](./modules/services/hopr) on them. Depending on the parameters given, it can deploy nodes in **bootstrap** or **core** mode.
 
+## Creating a new Datacenter
+
+Datacenters are composed by two important settings:
+
+- Country
+- Environment
+
+Each Datacenter needs to have these configurations defined in the form of a Google Cloud Platform (GCP) Project. In other words, each Datacenter represents an isolated project inside GCP that has its own permissions, machines and access to control with.
+
+To create a Datacenter, you first need to create a new Project and stablish the region (country) alongside the environment the Datacenter will represent. At the time of writing, the following are acceptable environments:
+
+- `develop`
+- `testing`
+- `staging`
+- `production`
+
+The following script will create a `develop` datacenter scoped to be in the `nl` region.
+
+```bash
+gcloud projects create hopr-nl-develop --folder=$FOLDER_ID --organization=$ORGANIZATION_ID
+```
 
 # Development
 
@@ -123,6 +144,14 @@ Enter passphrase for key '/Users/hopr/.ssh/google_compute_engine':
 hopr@ch-develop-hopr-bootstrap-ae7df441-1 ~ $
 ```
 
+## Additional Notes
+
+- Moving between environments is currently mapped as different projects. You will need change the credentials used for `Terraform` locally everytime you want to inspect a different datacenter.
+
+- Updating the environment variables do not recreate the machine. You need to change the container image as to recreate the virtual machine used for the specific container to recreate also the container with the new variables.
+
+- Sometimes the machines fail to connect to bootstrap servers after some idle time. Restarting both bootstrap servers and machines will help them connect.
+
 # Cookbook
 
 #### Seeing the latest logs from all machines
@@ -144,6 +173,7 @@ ssh -i ~/.ssh/daneel_ed25519 daneel@$(terraform output -json instances | jq -r '
 
 # Roadmap
 
+- [ ] Add instructions on how to create service account and buckets for a new Datacenter.
 - [ ] Automate the creation of projects, buckets and service accounts for deploying Datacenters and Services.
 - [ ] Create a version setup linked to branches (e.g. `master` deploys to production).
 
