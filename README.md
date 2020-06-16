@@ -38,12 +38,42 @@ Afterwards, ensure you point Terraform about the location of your Service Accoun
 export GOOGLE_APPLICATION_CREDENTIALS=/Users/hopr/Downloads/service_account_json_file.json
 ```
 
-### Testing Account
-To test everything is working, you can navegate to any service within a specific environment and run the following command (first command is to showcase the directory used).
+### Initializing Terraform
+
+After providing the service account to Terraform, ensure you initialize it in the service you want to use it. This will sync your workstation with the latest state stored in the GCS bucket.
 
 ```bash
 ➜  hopr-bootstrap git:(master) ✗ pwd
 /Users/hopr/Projects/hopr/hopr-devops/ch/develop/services/hopr-bootstrap
+➜  hopr-node git:(master) terraform init
+Initializing modules...
+
+Initializing the backend...
+
+Successfully configured the backend "gcs"! Terraform will automatically
+use this backend unless the backend configuration changes.
+
+Initializing provider plugins...
+- Finding hashicorp/google versions matching "~> 3.0"...
+- Installing hashicorp/google v3.26.0...
+- Installed hashicorp/google v3.26.0 (signed by HashiCorp)
+
+Terraform has been successfully initialized!
+
+You may now begin working with Terraform. Try running "terraform plan" to see
+any changes that are required for your infrastructure. All Terraform commands
+should now work.
+
+If you ever set or change modules or backend configuration for Terraform,
+rerun this command to reinitialize your working directory. If you forget, other
+commands will detect it and remind you to do so if necessary.
+```
+
+
+### Testing Account
+To test everything is working, you can navegate to any service within a specific environment and run the following command.
+
+```bash
 ➜  hopr-bootstrap git:(master) ✗ terraform output -json instances | jq
 {
   "ch-develop-hopr-bootstrap-ae7df441-1": "34.65.237.196",
@@ -101,9 +131,14 @@ hopr@ch-develop-hopr-bootstrap-ae7df441-1 ~ $
 terraform output -json instances | jq -r 'to_entries[] | .value' | xargs -n1 -I {} ssh daneel@{} "docker ps -q --filter \"ancestor=hopr/chat\" | xargs -I [] docker logs --tail 10 []"
 ```
 
+#### Restarting the docker container images
+```bash
+terraform output -json instances | jq -r 'to_entries[] | .value' | xargs -n1 -I {} ssh daneel@{} "docker ps -q --filter \"ancestor=hopr/chat\" | xargs -I [] docker restart []"
+```
+
 
 # Roadmap
 
-- [ ] Automate the creation of projects and service accounts for deploying Datacenters and Services.
+- [ ] Automate the creation of projects, buckets and service accounts for deploying Datacenters and Services.
 - [ ] Create a version setup linked to branches (e.g. `master` deploys to production).
 
