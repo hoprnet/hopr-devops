@@ -3,12 +3,10 @@ locals {
   environment = "testing"
   prefix      = "${local.datacenter}-${local.environment}"
   bootstrap_servers = [
-    "/dns4/ch-test-01.hoprnet.io/tcp/9091/p2p/16Uiu2HAmThyWP5YWutPmYk9yUZ48ryWyZ7Cf6pMTQduvHUS9sGE7",
-    "/dns4/ch-test-02.hoprnet.io/tcp/9091/p2p/16Uiu2HAmBSzk28qQ8bfpwVgEjef4q51kGg8GjEk3MinyyTB2WTGn",
-    "/dns4/ch-test-03.hoprnet.io/tcp/9091/p2p/16Uiu2HAm4H1ZxPb9KkoYD928Smrjnr2igYP8vBFbZKs5B8gchTnT",
-    "/ip4/34.65.237.196/tcp/9091/p2p/16Uiu2HAmThyWP5YWutPmYk9yUZ48ryWyZ7Cf6pMTQduvHUS9sGE7",
-    "/ip4/34.65.119.138/tcp/9091/p2p/16Uiu2HAmBSzk28qQ8bfpwVgEjef4q51kGg8GjEk3MinyyTB2WTGn",
-    "/ip4/34.65.120.13/tcp/9091/p2p/16Uiu2HAm4H1ZxPb9KkoYD928Smrjnr2igYP8vBFbZKs5B8gchTnT"
+    "/ip4/34.65.36.154/tcp/9091/p2p/16Uiu2HAmMUwDHzmFJaATzQPUFgzry5oxvSgWF2Vc553HCpekC4qU",
+    "/ip4/34.65.198.231/tcp/9091/p2p/16Uiu2HAmVFVHwJs7EqeRUtY6EZTtv379CiwvJgdsDfmdywbKfgAq",
+    "/dns4/ch-test-01.hoprnet.io/tcp/9091/p2p/16Uiu2HAmMUwDHzmFJaATzQPUFgzry5oxvSgWF2Vc553HCpekC4qU",
+    "/dns4/ch-test-02.hoprnet.io/tcp/9091/p2p/16Uiu2HAmVFVHwJs7EqeRUtY6EZTtv379CiwvJgdsDfmdywbKfgAq",
   ]
 }
 
@@ -44,7 +42,7 @@ module "hopr-node" {
   region          = "europe-west6"
   zone            = "europe-west6-a"
   client_email    = "terraform@hopr-${local.prefix}.iam.gserviceaccount.com"
-  container_image = "hopr/chat"
+  container_image = "hopr/chat:latest"
   key             = "key.pub"
 }
 
