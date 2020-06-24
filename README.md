@@ -277,10 +277,15 @@ ssh -i ~/.ssh/daneel_ed25519 daneel@$(terraform output -json instances | jq -r '
 
 # Roadmap
 
+## Technical
+
 - [ ] Add instructions on how to create service account and buckets for a new Datacenter.
 - [ ] [Automate the creation of Docker images to ensure anyone can create an official HOPR Chat image](https://github.com/hoprnet/hopr-devops/issues/16)
 - [ ] Provide a better command to parse the outputs of the bootstrap nodes to obtain only the first line to avoid having to copy the correct entry manually.
 - [ ] Add a persistent disk to the module to ensure that upon destruction of a VM the IP does not change and the DNS update isn't needed.
 - [ ] Automate the creation of projects, buckets and service accounts for deploying Datacenters and Services.
 - [ ] Create a version setup linked to branches (e.g. `master` deploys to production).
+- [ ] Provide an API which is able to be used in our Docs to get the most up-to-date bootstrap nodes.
+- [ ] Update `hopr-chat` as to load `BOOTSTRAP_NODES` from `.env` but if not, use an API to query them.
+
 
