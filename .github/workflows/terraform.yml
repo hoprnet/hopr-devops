@@ -46,6 +46,8 @@ jobs:
     # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: beta1
 
     # Create default credentials for Terraform from the GitHub secrets variable
     - name: Setup Google Cloud Credentials
