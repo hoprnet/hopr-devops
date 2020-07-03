@@ -3,9 +3,8 @@ locals {
   environment = "develop"
   prefix      = "${local.datacenter}-${local.environment}"
   bootstrap_servers = [
-    "/ip4/34.65.51.50/tcp/9091/p2p/16Uiu2HAmSSJAVoED4kU2hhgLNcNSTtyG53TWF41Q1ogpYLXFWYiR",
-    "/ip4/34.65.69.119/tcp/9091/p2p/16Uiu2HAmF4SaWWJEAfnSNrcD4ZMX69WvCivqiW6nhHtsRwj2XVaZ",
-    "/ip4/34.65.114.152/tcp/9091/p2p/16Uiu2HAmNJzwT8XUUUSnNCdXFVNxiPnGbffDwpaGGA75ETqsun8R"
+    "/ip4/34.65.200.251/tcp/9091/p2p/16Uiu2HAmJhViyFWTHV1ynv8Rt5gmrzVRvPMz2vxPaVjR8aNgcuL6",
+    "/ip4/34.65.75.45/tcp/9091/p2p/16Uiu2HAmByUHkBiciYAuJ9dknZyo6rs1RX32PLZALq7uaGfievXE"
   ]
 }
 
@@ -23,7 +22,7 @@ provider google {
 }
 
 module "hopr-node" {
-  instance_count    = 3
+  instance_count    = 2
   instance_name     = "hopr-node"
   prefix            = local.prefix
   bootstrap_servers = local.bootstrap_servers
@@ -41,7 +40,7 @@ module "hopr-node" {
   region          = "europe-west6"
   zone            = "europe-west6-a"
   client_email    = "terraform@hopr-${local.prefix}.iam.gserviceaccount.com"
-  container_image = "gcr.io/hoprassociation/hopr-core:1.1.3-dev.510badd"
+  container_image = "gcr.io/hoprassociation/hopr-core:1.1.5-dev.dcc4b19"
   key             = "key.pub"
 }
 
