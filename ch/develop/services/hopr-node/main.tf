@@ -3,8 +3,8 @@ locals {
   environment = "develop"
   prefix      = "${local.datacenter}-${local.environment}"
   bootstrap_servers = [
-    "/ip4/34.65.200.251/tcp/9091/p2p/16Uiu2HAmJhViyFWTHV1ynv8Rt5gmrzVRvPMz2vxPaVjR8aNgcuL6",
-    "/ip4/34.65.75.45/tcp/9091/p2p/16Uiu2HAmByUHkBiciYAuJ9dknZyo6rs1RX32PLZALq7uaGfievXE"
+    "/ip4/34.65.69.76/tcp/9091/p2p/16Uiu2HAmQBg2sfjJARB9t9W3E4DqzGobCFuc6C2utxzf5Dq87V7M",
+    "/ip4/34.65.177.154/tcp/9091/p2p/16Uiu2HAm4FcroWGzc9yhDAsKSGC8W9yoDKiQBnAGK5aQdqJWmior"
   ]
 }
 
@@ -40,7 +40,7 @@ module "hopr-node" {
   region          = "europe-west6"
   zone            = "europe-west6-a"
   client_email    = "terraform@hopr-${local.prefix}.iam.gserviceaccount.com"
-  container_image = "gcr.io/hoprassociation/hopr-core:1.1.5-dev.dcc4b19"
+  container_image = "gcr.io/hoprassociation/hopr-core:1.1.6-dev.65e3d09"
   key             = "key.pub"
 }
 
