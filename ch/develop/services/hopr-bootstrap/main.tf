@@ -19,7 +19,7 @@ provider google {
 }
 
 module "hopr-node-bootstrap" {
-  instance_count    = 3
+  instance_count    = 2
   instance_name     = "hopr-bootstrap"
   prefix            = local.prefix
   bootstrap_servers = []
@@ -37,7 +37,7 @@ module "hopr-node-bootstrap" {
   region          = "europe-west6"
   zone            = "europe-west6-a"
   client_email    = "terraform@hopr-${local.prefix}.iam.gserviceaccount.com"
-  container_image = "gcr.io/hoprassociation/hopr-core:1.1.3-dev.510badd"
+  container_image = "gcr.io/hoprassociation/hopr-core:1.1.5-dev.dcc4b19"
   key             = "key.pub"
 }
 
