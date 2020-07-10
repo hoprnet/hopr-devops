@@ -5,7 +5,7 @@ on:
     paths:
     - ch/develop/services/libp2p-webrtc-star/main.tf
     branches:
-    - libp2p
+    - master
 
 jobs:
   terraform:
