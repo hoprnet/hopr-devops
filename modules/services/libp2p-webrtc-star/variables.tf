@@ -35,4 +35,9 @@ variable "container_image" {
 }
 variable "image_port" {
   description = "Container listening port"
+  default     = "9090"
+}
+variable "env_DEBUG" {
+  description = "WRTC Star Debug Flags"
+  default     = ""
 }

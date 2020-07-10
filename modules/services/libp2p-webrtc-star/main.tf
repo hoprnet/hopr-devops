@@ -18,6 +18,16 @@ module "libp2p-webrtc-star-container" {
 
   container = {
     image = var.container_image
+    env = [
+      {
+        name  = "DEBUG"
+        value = var.env_DEBUG
+      },
+      {
+        name  = "PORT"
+        value = var.image_port
+      }
+    ]
   }
 
   restart_policy = "Always"
@@ -51,7 +61,7 @@ resource "google_compute_instance" "vm" {
     }
   }
 
-  tags = ["libp2p-container-vm"]
+  tags = ["libp2p-container-vm", "https-server"]
 
   metadata = {
     ssh-keys                  = "daneel:${file("${var.key}")}"

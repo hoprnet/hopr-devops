@@ -18,18 +18,20 @@ provider google {
 }
 
 module "libp2p-webrtc-star" {
-  instance_count = 2
+  instance_count = 1
   instance_name  = "libp2p-webrtc-star"
   prefix         = local.prefix
 
   source     = "../../../../modules/services/libp2p-webrtc-star"
-  image_port = "9090"
+  image_port = "80"
+  env_DEBUG  = "signalling-server,signalling-server:error"
+
 
   project_id      = "hopr-${local.prefix}"
   region          = "europe-west6"
   zone            = "europe-west6-a"
   client_email    = "terraform@hopr-${local.prefix}.iam.gserviceaccount.com"
-  container_image = "libp2p/js-libp2p-webrtc-star"
+  container_image = "libp2p/js-libp2p-webrtc-star:latest"
   key             = "key.pub"
 }
 
