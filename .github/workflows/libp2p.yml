@@ -68,25 +68,25 @@ jobs:
 
     # Ensure we have Daneel's key in our filesystem before we add it to our servers as part of our setup
     - name: Setup Daneel's key | ${{ matrix.datacenter }} - ${{ matrix.environment }}
-      working-directory: ${{ matrix.datacenter }}/${{ matrix.environment }}/services/hopr-${{ matrix.node_type }}
+      working-directory: ${{ matrix.datacenter }}/${{ matrix.environment }}/services/libp2p-webrtc-star
       run: echo ${{ secrets.SSH_PUB_KEY }} > key.pub
 
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init | ${{ matrix.datacenter }} - ${{ matrix.environment }}
-      working-directory: ${{ matrix.datacenter }}/${{ matrix.environment }}/services/hopr-${{ matrix.node_type }}
+      working-directory: ${{ matrix.datacenter }}/${{ matrix.environment }}/services/libp2p-webrtc-star
       run: terraform init
 
     # Checks that all Terraform configuration files adhere to a canonical format
     - name: Terraform Format | ${{ matrix.datacenter }} - ${{ matrix.environment }}
-      working-directory: ${{ matrix.datacenter }}/${{ matrix.environment }}/services/hopr-${{ matrix.node_type }}
+      working-directory: ${{ matrix.datacenter }}/${{ matrix.environment }}/services/libp2p-webrtc-star
       run: terraform fmt -check
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan | ${{ matrix.datacenter }} - ${{ matrix.environment }}
-      working-directory: ${{ matrix.datacenter }}/${{ matrix.environment }}/services/hopr-${{ matrix.node_type }}
+      working-directory: ${{ matrix.datacenter }}/${{ matrix.environment }}/services/libp2p-webrtc-star
       run: terraform plan
 
     # Applies execution plan to our given Datacenter
     - name: Terraform Apply | ${{ matrix.datacenter }} - ${{ matrix.environment }}
-      working-directory: ${{ matrix.datacenter }}/${{ matrix.environment }}/services/hopr-${{ matrix.node_type }}
+      working-directory: ${{ matrix.datacenter }}/${{ matrix.environment }}/services/libp2p-webrtc-star
       run: terraform apply -auto-approve
