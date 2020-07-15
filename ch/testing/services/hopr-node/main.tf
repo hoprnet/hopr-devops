@@ -3,8 +3,8 @@ locals {
   environment = "testing"
   prefix      = "${local.datacenter}-${local.environment}"
   bootstrap_servers = [
-    "/ip4/34.65.111.179/tcp/9091/p2p/16Uiu2HAm5WUS1kv8p3uiSgZmz2uh427qr8jJZ8jrFCePHATaVgz2",
-    "/ip4/34.65.141.74/tcp/9091/p2p/16Uiu2HAmRD7iEEopoiHWz7NpsM4wwSc5yWpdSX3esb3kYkJNY1yn"
+    "/ip4/34.65.148.229/tcp/9091/p2p/16Uiu2HAmRtRJnHs7ntMAkyJJTXrEbtJB7XQBZ2wrAgk51CC9kY1c",
+    "/ip4/34.65.113.155/tcp/9091/p2p/16Uiu2HAmHwr3RBbYvWqfApQpQsa2TiRN6u4GhmtPzr7LCbmcZ9Zo"
   ]
 }
 
@@ -22,7 +22,7 @@ provider google {
 }
 
 module "hopr-node" {
-  instance_count    = 3
+  instance_count    = 2
   instance_name     = "hopr-node"
   prefix            = local.prefix
   bootstrap_servers = local.bootstrap_servers
