@@ -264,6 +264,12 @@ hopr@ch-develop-hopr-bootstrap-ae7df441-1 ~ $
 terraform output -json instances | jq -r 'to_entries[] | .value' | xargs -n1 -I {} ssh daneel@{} "docker ps -q --filter \"ancestor=hopr/chat\" | xargs -I [] docker logs --tail 10 []"
 ```
 
+#### Seeing the first logs from a machine
+
+```bash
+terraform output -json instances | jq -r 'to_entries[] | .value' | xargs -n1 -I {} ssh daneel@{} "docker ps -q --filter \"ancestor=hopr/chat\" | xargs -I [] docker logs [] | head -n 50"
+```
+
 #### Restarting the docker container images
 ```bash
 terraform output -json instances | jq -r 'to_entries[] | .value' | xargs -n1 -I {} ssh daneel@{} "docker ps -q --filter \"ancestor=hopr/chat\" | xargs -I [] docker restart []"
