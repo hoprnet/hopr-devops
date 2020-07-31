@@ -91,12 +91,12 @@ gcloud compute instances create-with-container geth-full-node-001 \
 
 #### Additional Environment Variables
 ```bash
-gcloud compute instances create-with-container mazebot-testnet-grpc-001 \
+gcloud compute instances create-with-container mazebot-testnet-grpc-002 \
   --zone=europe-west6-a --machine-type=f1-micro --subnet=default --network-tier=PREMIUM \
   --metadata=google-logging-enabled=true --maintenance-policy=MIGRATE \
   --tags=grpc-server \
   --boot-disk-size=10GB --boot-disk-type=pd-standard --container-image=gcr.io/hoprassociation/hopr-server:latest \
-  --container-env BOOTSTRAP_SERVERS="/ip4/34.65.82.167/tcp/9091/p2p/16Uiu2HAm6VH37RG1R4P8hGV1Px7MneMtNc6PNPewNxCsj1HsDLXW" \
+  --container-env=^,@^BOOTSTRAP_SERVERS=/ip4/34.65.82.167/tcp/9091/p2p/16Uiu2HAm6VH37RG1R4P8hGV1Px7MneMtNc6PNPewNxCsj1HsDLXW,/ip4/34.65.111.179/tcp/9091/p2p/16Uiu2HAmPyq9Gw93VWdS3pgmyAWg2UNnrgZoYKPDUMbKDsWhzuvb \
   --container-restart-policy=always
 ```
 
