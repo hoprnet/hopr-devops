@@ -37,7 +37,7 @@ module "hopr-node-bootstrap" {
   region          = "europe-west6"
   zone            = "europe-west6-a"
   client_email    = "terraform@hopr-${local.prefix}.iam.gserviceaccount.com"
-  container_image = "gcr.io/hoprassociation/hopr-core:1.2.0"
+  container_image = "gcr.io/hoprassociation/hopr-chat:1.3.0"
   key             = "key.pub"
 }
 
