@@ -19,7 +19,7 @@ provider google {
 }
 
 module "hopr-node-bootstrap" {
-  instance_count    = 2
+  instance_count    = 0
   instance_name     = "hopr-bootstrap"
   prefix            = local.prefix
   bootstrap_servers = []
