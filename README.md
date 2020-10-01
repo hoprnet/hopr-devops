@@ -3,6 +3,9 @@
 
 HOPR regional and zones configuration data used to deploy nodes in different environments
 
+# Maintenaince windows
+No servers will be spinned automatically for the duration of the säntis network. All deployments are ad-hoc for now.
+
 # Usage
 
 HOPR Services AG datacenter infrastructure is managed an automated via this repository. Executing changes and pushing these against `master` will automatically trigger our GitHub action under [./.github/workflows/terraform.yml](./.github/workflows/terraform.yml), which connects to our GCP account and deploys our [HOPR Chat Terraform Module](./modules/services/hopr) on them. Depending on the parameters given, it can deploy nodes in **bootstrap** or **core** mode.
